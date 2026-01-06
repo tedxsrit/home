@@ -78,7 +78,7 @@ const Footer = ({ variant = 'dark' }: FooterProps) => {
             <h4 className="text-foreground font-semibold mb-4 uppercase tracking-wider text-sm">Location</h4>
             <div className="rounded-lg overflow-hidden border border-border h-[150px]">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.4543652654686!2d76.9929!3d11.0168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDAxJzAwLjUiTiA3NsKwNTknMzQuNCJF!5e0!3m2!1sen!2sin!4v1234567890"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5085.331006691!2d76.89818547602763!3d10.941749756120466!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba85c6bbf412ce5%3A0x52c5151f21ac8419!2sSri%20Ramakrishna%20Institute%20of%20Technology!5e1!3m2!1sen!2sus!4v1767681768293!5m2!1sen!2sus"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -87,6 +87,15 @@ const Footer = ({ variant = 'dark' }: FooterProps) => {
                 referrerPolicy="no-referrer-when-downgrade"
                 title="SRIT Location"
               />
+              {/* <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5085.331006691!2d76.89818547602763!3d10.941749756120466!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba85c6bbf412ce5%3A0x52c5151f21ac8419!2sSri%20Ramakrishna%20Institute%20of%20Technology!5e1!3m2!1sen!2sus!4v1767681768293!5m2!1sen!2sus"
+               width="600"
+                height="450"
+                 style="border:0;"
+                 allowFullScreen
+                  loading="lazy" 
+                  referrerpolicy="no-referrer-when-downgrade"
+                  title="SRIT Location"
+                   /> */}
             </div>
           </div>
         </div>
