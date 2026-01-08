@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { MapPin, Mail, Phone } from 'lucide-react';
+import logo from '@/assets/SRIT-logo.png';
 
 const footerLinks = [
   { name: 'Home', path: '/' },
@@ -54,6 +55,14 @@ const Footer = ({ variant = 'dark' }: FooterProps) => {
 
           {/* Contact Info */}
           <div>
+            <h4 className="text-foreground font-semibold mb-4 uppercase tracking-wider text-sm">Our hosting partner</h4>
+             <ul className="space-y-3 mb-5">
+              <li className="flex items-start gap-3 text-muted-foreground text-sm ml-30">
+                <img src={logo} className="text-primary flex-shrink-0 mt-30 w-15 h-14" />
+                <span>Sri Ramakrishna Institute of Technology, Coimbatore, Tamil Nadu, India</span>
+              </li>
+              
+            </ul>
             <h4 className="text-foreground font-semibold mb-4 uppercase tracking-wider text-sm">Contact</h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-3 text-muted-foreground text-sm">
