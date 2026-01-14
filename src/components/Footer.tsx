@@ -116,6 +116,7 @@ const Footer = ({ variant = 'dark' }: FooterProps) => {
           </p>
         </div>
       </div>
+      {/* need to add some social pages */}
     </footer>
   );
 };
