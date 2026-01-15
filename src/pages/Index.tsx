@@ -12,6 +12,8 @@ import speaker2 from '@/assets/sp_d.png';
 import speaker3 from '@/assets/sp_d.png';
 import speaker4 from '@/assets/sp_d.png';
 import TextType from './TypeText';
+import CountdownTimer from '@/components/CountdownTimer';
+
 
 const speakers = [
   { id: 1, name: 'Coming soon', /*role: 'Block Chain'*/ image: speaker1 },
@@ -95,11 +97,14 @@ const Index = () => {
           </div>
 
           <p
-            className="text-2xl md:text-4xl font-light text-muted-foreground mb-8 animate-slide-up"
+            className="text-2xl md:text-4xl font-light text-muted-foreground mb-2 animate-slide-up"
             style={{ animationDelay: '0.3s' }}
           >
-            Coming Soon
+            <CountdownTimer />
           </p>
+       
+
+          
 
           <p
             className="text-lg md:text-xl text-primary font-medium tracking-widest  animate-slide-up"
@@ -127,7 +132,7 @@ const Index = () => {
                 href="https://forms.gle/Sde3tefYcGhv8p5i7"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4"
+                className="px-2"
               >
                 Register Now
               </a>
@@ -151,8 +156,8 @@ const Index = () => {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-4 left-[50%]-translate-x-1/2 animate-bounce">
-          <div className="flex items-start justify-center p-2">
+        <div className="absolute bottom-0 left-[50%]-translate-x-1/2 animate-bounce">
+          <div className="flex items-start justify-center p-0">
             <svg
               width="150"
               height="150"
@@ -233,7 +238,7 @@ const Index = () => {
               rel="noopener noreferrer"
               className="w-full sm:w-auto"
             >
-              <Button variant="outline" size="lg" className="w-full sm:w-auto">
+              <Button variant="outline" size="lg" className="w-full sm:w-auto ">
                 Register
               </Button>
             </a>

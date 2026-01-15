@@ -295,6 +295,9 @@
   }
 }
 
+
+
+
 /* Loading Bar Animation */
 .loading-progress {
   animation: loading 3s infinite ease-in-out;
@@ -318,3 +321,69 @@
   background: hsl(348, 100%, 55%);
 }
 
+
+
+.card {
+  border-radius: 18px;
+}
+
+.image {
+  background: #000;
+}
+
+.perspective {
+  perspective: 1000px;
+}
+
+
+/* Logwork countdown sizing */
+.countdown-responsive {
+  width: 80%;
+  max-width: 1400px;        /* allow it to be BIG */
+  display: flex;
+  justify-content: center;
+  transform-origin: center;
+}
+/* Logwork countdown responsive scaling */
+.countdown-responsive {
+  width: 70%;
+  max-width: 1400px;
+  display: flex;
+  justify-content: center;
+  transform-origin: center;
+}
+
+/* 🔥 Very large screens (big desktop) */
+@media (min-width: 1536px) {
+  .countdown-responsive {
+    transform: scale(1.45);
+  }
+}
+
+/* Large desktop */
+@media (min-width: 1280px) and (max-width: 1535px) {
+  .countdown-responsive {
+    transform: scale(1.3);
+  }
+}
+
+/* Normal desktop / laptop */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .countdown-responsive {
+    transform: scale(1.15);
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .countdown-responsive {
+    transform: scale(1);
+  }
+}
+
+/* ✅ MOBILE — BIG & CORRECT */
+@media (max-width: 767px) {
+  .countdown-responsive {
+    transform: scale(0.95);
+  }
+}

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import { MapPin, Mail, Phone } from 'lucide-react';
+import { MapPin, Mail, Phone, Linkedin, Instagram, Facebook } from 'lucide-react';
 import logo from '@/assets/SRIT-logo.png';
+
 
 const footerLinks = [
   { name: 'Home', path: '/' },
@@ -8,7 +9,7 @@ const footerLinks = [
   { name: 'Speakers', path: '/speakers' },
   { name: 'Partners', path: '/partners' },
   
-  // { name: 'Team', path: '/team' },
+  { name: 'Team', path: '/team' },
   { name: 'Contact', path: '/contact' },
 ];
 
@@ -33,6 +34,38 @@ const Footer = ({ variant = 'dark' }: FooterProps) => {
               Ideas worth spreading. Join us for an inspiring journey of innovation, 
               creativity, and human connection at TEDxSRIT.
             </p>
+            <div className="flex items-center gap-4 pt-2">
+  <a
+    href="https://www.linkedin.com/company/tedxsrit/posts/?feedView=all"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-muted-foreground hover:text-primary transition-colors"
+    aria-label="LinkedIn"
+  >
+    <Linkedin size={25} />
+  </a>
+
+  <a
+    href="https://www.instagram.com/tedxsrit/?igsh=NTluZWZyMW1lcXJm#"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-muted-foreground hover:text-primary transition-colors"
+    aria-label="Instagram"
+  >
+    <Instagram size={25} />
+  </a>
+
+  <a
+    href=" https://www.facebook.com/share/1Ds188wQns/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-muted-foreground hover:text-primary transition-colors"
+    aria-label="Facebook"
+  >
+    <Facebook size={25} />
+  </a>
+</div>
+
             {/* <p className="text-primary text-sm font-medium">Human in the Loop</p> */}
           </div>
 

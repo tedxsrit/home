@@ -5,6 +5,7 @@ import { Menu, X } from 'lucide-react';
 const navItems = [
   { name: 'Home', path: '/' },
   { name: 'About TEDx', path: '/about' },
+  { name: 'Team ', path: '/team' },
   { name: 'Speakers', path: '/speakers' },
   { name: 'Partners', path: '/partners' },
   

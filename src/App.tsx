@@ -11,9 +11,10 @@ import Index from "./pages/Index";
 import Speakers from "./pages/Speakers";
 import Partners from "./pages/Partners";
 import About from "./pages/About";
-import Team from "./pages/Team";
+import Team from "./pages/TEDxSRITTeam";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+
 
 const queryClient = new QueryClient();
 
