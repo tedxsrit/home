@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import './TEDxSRITTeam.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -8,7 +8,7 @@ import Danish from '@/assets/techTeam/danish.jpg';
 import ashwin from '@/assets/techTeam/as.jpeg';
 import Hemalnaath from '@/assets/techTeam/hemal.jpg';
 import Jashwanth from '@/assets/techTeam/jash.jpg';
-import Ashish from '@/assets/techTeam/ashish.jpg';
+import rohanMehta from '@/assets/techTeam/danish.jpg';
 
 interface TeamMember {
   id: number;
@@ -24,7 +24,6 @@ interface TeamMember {
 const TEDxSRITTeam: React.FC = () => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   
   // Check if device is mobile
   useEffect(() => {
@@ -40,6 +39,17 @@ const TEDxSRITTeam: React.FC = () => {
     };
   }, []);
   
+  // Handle card flip for mobile
+  const handleCardFlip = (id: number) => {
+    if (isMobile) {
+      if (flippedCards.includes(id)) {
+        setFlippedCards(flippedCards.filter(cardId => cardId !== id));
+      } else {
+        setFlippedCards([...flippedCards, id]);
+      }
+    }
+  };
+  
   // Organiser Team
   const organiserTeam: TeamMember[] = [
     { 
@@ -49,7 +59,7 @@ const TEDxSRITTeam: React.FC = () => {
       team: 'Organiser', 
       image: Danish, 
       isHead: true,
-      linkedin: 'https://www.linkedin.com/in/danish-veer-magotra/',
+      linkedin: 'https://linkedin.com/in/example1',
       instagram: 'https://instagram.com/example1'
     },
   ];
@@ -63,7 +73,7 @@ const TEDxSRITTeam: React.FC = () => {
       team: 'Tech Team', 
       image: ashwin, 
       isHead: true,
-      linkedin: 'https://www.linkedin.com/in/ashwin-robert05/',
+      linkedin: 'https://linkedin.com/in/example2',
       instagram: 'https://instagram.com/example2'
     },
     { 
@@ -73,8 +83,8 @@ const TEDxSRITTeam: React.FC = () => {
       team: 'Tech Team', 
       image: Hemalnaath, 
       isHead: false,
-      linkedin: 'https://www.linkedin.com/in/hemalnaath-ganesan-702a90297?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-      instagram: 'https://www.linkedin.com/in/hemalnaath-ganesan-702a90297?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'
+      linkedin: 'https://linkedin.com/in/example3',
+      instagram: 'https://instagram.com/example3'
     },
     { 
       id: 4, 
@@ -83,17 +93,17 @@ const TEDxSRITTeam: React.FC = () => {
       team: 'Tech Team', 
       image: Jashwanth, 
       isHead: false,
-      linkedin: 'https://www.linkedin.com/in/jashwanth-g-p-32650330b/',
+      linkedin: 'https://linkedin.com/in/example4',
       instagram: 'https://instagram.com/example4'
     },
     { 
       id: 5, 
       name: 'Ashish M Manon', 
-      role: 'UI Enhanser', 
+      role: 'Web Developer', 
       team: 'Tech Team', 
-      image: Ashish, 
+      image: rohanMehta, 
       isHead: false,
-      linkedin: 'https://www.linkedin.com/in/ashish-m-menon-4541a9333/',
+      linkedin: 'https://linkedin.com/in/example5',
       instagram: 'https://instagram.com/example5'
     },
   ];
@@ -109,45 +119,6 @@ const TEDxSRITTeam: React.FC = () => {
       alert('Social link not available');
     }
   };
-
-  // Handle card flip for mobile on scroll
-  useEffect(() => {
-    if (isMobile) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const cardId = parseInt(entry.target.getAttribute('data-card-id') || '0');
-              setFlippedCards((prev) => {
-                if (!prev.includes(cardId)) {
-                  return [...prev, cardId];
-                }
-                return prev;
-              });
-            } else {
-              const cardId = parseInt(entry.target.getAttribute('data-card-id') || '0');
-              setFlippedCards((prev) => prev.filter(id => id !== cardId));
-            }
-          });
-        },
-        {
-          threshold: 0.7,
-          rootMargin: '0px 0px -100px 0px'
-        }
-      );
-      
-      // Observe all flip cards
-      cardRefs.current.forEach((ref) => {
-        if (ref) {
-          observer.observe(ref);
-        }
-      });
-      
-      return () => {
-        observer.disconnect();
-      };
-    }
-  }, [isMobile]);
 
   return (
     <div className="tedx-container">
@@ -193,10 +164,7 @@ const TEDxSRITTeam: React.FC = () => {
               <div 
                 key={member.id} 
                 className="team-card-head-wrapper"
-                ref={(el) => {
-                  cardRefs.current[member.id] = el;
-                }}
-                data-card-id={member.id}
+                onClick={() => handleCardFlip(member.id)}
               >
                 <div className={`team-card-head ${flippedCards.includes(member.id) ? 'flipped' : ''}`}>
                   <div className="team-card-inner">
@@ -212,7 +180,7 @@ const TEDxSRITTeam: React.FC = () => {
                             e.currentTarget.src = getFallbackImage(member.name);
                           }}
                         />
-                        <div className="team-head-crown">~</div>
+                        <div className="team-head-crown">👑</div>
                         <div className="team-head-badge">TEAM LEAD</div>
                       </div>
                       
@@ -221,6 +189,13 @@ const TEDxSRITTeam: React.FC = () => {
                         <div className="team-head-role">{member.role}</div>
                         <div className="team-head-tag">{member.team.toUpperCase()}</div>
                       </div>
+                      
+                      {/* Mobile Flip Hint */}
+                      {isMobile && (
+                        <div className="mobile-flip-hint">
+                          <span>Tap to flip</span>
+                        </div>
+                      )}
                     </div>
                     
                     {/* Back Side - Social Media */}
@@ -245,7 +220,7 @@ const TEDxSRITTeam: React.FC = () => {
                             <span className="social-link-text">LinkedIn</span>
                           </a>
                           
-                          {/* <a 
+                          <a 
                             href={member.instagram || '#'} 
                             className="social-link instagram"
                             onClick={(e) => handleSocialClick(member.instagram, e)}
@@ -258,10 +233,23 @@ const TEDxSRITTeam: React.FC = () => {
                               </svg>
                             </div>
                             <span className="social-link-text">Instagram</span>
-                          </a> */}
+                          </a>
                         </div>
                         
                         <div className="back-quote">"Leading with passion, delivering with purpose"</div>
+                        
+                        {/* Mobile Back to Front Button */}
+                        {isMobile && (
+                          <button 
+                            className="mobile-back-btn"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleCardFlip(member.id);
+                            }}
+                          >
+                            Tap to return
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -287,10 +275,7 @@ const TEDxSRITTeam: React.FC = () => {
               <div 
                 key={head.id} 
                 className="team-card-head-wrapper"
-                ref={(el) => {
-                  cardRefs.current[head.id] = el;
-                }}
-                data-card-id={head.id}
+                onClick={() => handleCardFlip(head.id)}
               >
                 <div className={`team-card-head ${flippedCards.includes(head.id) ? 'flipped' : ''}`}>
                   <div className="team-card-inner">
@@ -306,7 +291,7 @@ const TEDxSRITTeam: React.FC = () => {
                             e.currentTarget.src = getFallbackImage(head.name);
                           }}
                         />
-                        <div className="team-head-crown">~</div>
+                        <div className="team-head-crown">👑</div>
                         <div className="team-head-badge">TEAM LEAD</div>
                       </div>
                       
@@ -315,6 +300,13 @@ const TEDxSRITTeam: React.FC = () => {
                         <div className="team-head-role">{head.role}</div>
                         <div className="team-head-tag">{head.team.toUpperCase()}</div>
                       </div>
+                      
+                      {/* Mobile Flip Hint */}
+                      {isMobile && (
+                        <div className="mobile-flip-hint">
+                          <span>Tap to flip</span>
+                        </div>
+                      )}
                     </div>
                     
                     {/* Back Side - Social Media */}
@@ -339,7 +331,7 @@ const TEDxSRITTeam: React.FC = () => {
                             <span className="social-link-text">LinkedIn</span>
                           </a>
                           
-                          {/* <a 
+                          <a 
                             href={head.instagram || '#'} 
                             className="social-link instagram"
                             onClick={(e) => handleSocialClick(head.instagram, e)}
@@ -352,10 +344,23 @@ const TEDxSRITTeam: React.FC = () => {
                               </svg>
                             </div>
                             <span className="social-link-text">Instagram</span>
-                          </a> */}
+                          </a>
                         </div>
                         
                         <div className="back-quote">"Innovating with purpose, building with passion"</div>
+                        
+                        {/* Mobile Back to Front Button */}
+                        {isMobile && (
+                          <button 
+                            className="mobile-back-btn"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleCardFlip(head.id);
+                            }}
+                          >
+                            Tap to return
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -393,7 +398,7 @@ const TEDxSRITTeam: React.FC = () => {
                             <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                           </svg>
                         </a>
-                        {/* <a 
+                        <a 
                           href={member.instagram || '#'} 
                           className="member-social-icon instagram"
                           onClick={(e) => handleSocialClick(member.instagram, e)}
@@ -403,7 +408,7 @@ const TEDxSRITTeam: React.FC = () => {
                           <svg viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                           </svg>
-                        </a> */}
+                        </a>
                       </div>
                     </div>
                     
@@ -420,10 +425,7 @@ const TEDxSRITTeam: React.FC = () => {
         </section>
       </main>
       
-      {/* Footer Section */}
-      <div className="footer-wrapper">
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 };

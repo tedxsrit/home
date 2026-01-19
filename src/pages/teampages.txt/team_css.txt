@@ -1,4 +1,4 @@
-/* TEDxSRITTeam.css - Single Page Team Layout with Footer Fix */
+/* TEDxSRITTeam.css - Single Page Team Layout */
 :root {
   --tedx-red: #e62b1e;
   --tedx-red-light: #ff4444;
@@ -24,8 +24,6 @@
   color: var(--tedx-white);
   position: relative;
   overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
   padding-top: 80px;
 }
 
@@ -133,7 +131,6 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  flex: 1;
 }
 
 /* Team Section */
@@ -247,7 +244,7 @@
   }
 }
 
-/* Mobile flip class - automatic on scroll */
+/* Mobile flip class */
 .team-card-head.flipped {
   transform: rotateY(180deg) rotateX(5deg);
 }
@@ -389,6 +386,23 @@
   margin: 0 auto;
 }
 
+/* Mobile Flip Hint */
+.mobile-flip-hint {
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(0, 0, 0, 0.5);
+  padding: 8px;
+  border-radius: 10px;
+  margin: 0 20px;
+  backdrop-filter: blur(5px);
+  display: none;
+}
+
 /* Common Back Side */
 .team-card-back {
   background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
@@ -502,6 +516,26 @@
   line-height: 1.5;
   padding-top: 20px;
   border-top: 1px solid rgba(230, 43, 30, 0.3);
+}
+
+/* Mobile Back Button */
+.mobile-back-btn {
+  background: rgba(230, 43, 30, 0.2);
+  color: var(--tedx-red);
+  border: 1px solid var(--tedx-red);
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.mobile-back-btn:hover {
+  background: var(--tedx-red);
+  color: white;
 }
 
 /* Team Members Section */
@@ -681,14 +715,6 @@
   margin: 0 auto;
 }
 
-/* Footer Wrapper */
-.footer-wrapper {
-  width: 100%;
-  margin-top: auto;
-  position: relative;
-  z-index: 2;
-}
-
 /* Enhanced Mobile Responsiveness */
 @media (max-width: 1200px) {
   .team-heads-grid {
@@ -803,9 +829,9 @@
     font-size: 1.1rem;
   }
   
-  /* Mobile scroll animation hint */
-  .team-heads-grid {
-    margin-top: 30px;
+  /* Show mobile flip hint on mobile */
+  .mobile-flip-hint {
+    display: block;
   }
   
   /* Disable hover effects on mobile */
@@ -1003,9 +1029,14 @@
 
 /* Improve button touch targets on mobile */
 @media (hover: none) and (pointer: coarse) {
+  .filter-btn,
   .social-link,
   .member-social-icon {
     min-height: 44px;
+  }
+  
+  .team-card-head-wrapper {
+    cursor: pointer;
   }
   
   /* Add active state for mobile touch */
