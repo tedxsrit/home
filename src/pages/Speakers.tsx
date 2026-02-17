@@ -2,47 +2,92 @@ import { useState } from 'react';
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import speaker1 from '@/assets/sp_d.png';
-import speaker2 from '@/assets/sp_d.png';
-import speaker3 from '@/assets/sp_d.png';
-import speaker4 from '@/assets/sp_d.png';
+import speaker1 from '@/assets/speakers/Speaker_priya.jpg';
+import speaker2 from '@/assets/speakers/Speaker_vamsi.jpeg';
+import speaker3 from '@/assets/speakers/Speaker_Pratham Golcha.jpg';
+import speaker4 from '@/assets/speakers/Speaker_Siddanth (1).png';
+import speaker5 from '@/assets/speakers/Speaker_Lija Mohan (1).jpeg';
+import speaker6 from '@/assets/speakers/Speaker_ Santosh (1).jpeg';
+import speaker7 from '@/assets/speakers/Speaker_prasanth.jpeg';
+import speaker8 from '@/assets/speakers/Speaker_ardri.jpg';
+import speaker9 from '@/assets/speakers/Speaker_Ranjit.png';
 import { Button } from '@/components/ui/button';
 import { color } from 'framer-motion';
 
 const speakers = [
   {
     id: 1,
-    name: ' you wanna be a speaker?',
+    name: ' Dr. Priya Jaganathan',
     role: '  ',
     image: speaker1,
-   quote: 'Exciting updates are on the way will be revealed shortly Watch this space for more.',
-  //   bio: 'Dr. Rajesh Kumar is a leading AI researcher with over 15 years of experience in developing human-centric AI systems.',
-  //
+   quote: 'The real danger is not AI, but people living without conscious choices.',
+    // bio: 'Dr. Rajesh Kumar is a leading AI researcher with over 15 years of experience in developing human-centric AI systems.',
+  
    },
-  // {
-  //   id: 2,
-  //   name: 'Priya Sharma',
-  //   role: 'Tech Entrepreneur & Innovator',
-  //   image: speaker2,
-  //   quote: 'Innovation without empathy is just invention. True innovation understands the human experience and creates solutions that resonate with people\'s lives and aspirations.',
-  //   bio: 'Priya Sharma is the founder of multiple successful tech startups focused on social impact.',
-  // },
-  // {
-  //   id: 3,
-  //   name: 'Prof. Suresh Menon',
-  //   role: 'Innovation Expert & Educator',
-  //   image: speaker3,
-  //   quote: 'Education is not just about filling minds with information, but about igniting curiosity and fostering the courage to question, explore, and create.',
-  //   bio: 'Prof. Suresh Menon has dedicated his career to transforming education through innovative teaching methodologies.',
-  // },
-  // {
-  //   id: 4,
-  //   name: 'Dr. Ananya Rao',
-  //   role: 'Neuroscientist & Author',
-  //   image: speaker4,
-  //   quote: 'Understanding the human brain is the key to understanding ourselves. Every discovery in neuroscience brings us closer to unlocking the mysteries of consciousness and creativity.',
-  //   bio: 'Dr. Ananya Rao is an award-winning neuroscientist whose research bridges the gap between brain science and everyday life.',
-  // },
+  {
+    id: 2,
+    name: 'Lt. Vamshi E (Retd.)',
+    role: '',
+    image: speaker2,
+    quote: 'Innovation without empathy is just invention. True innovation understands the human experience and creates solutions that resonate with people\'s lives and aspirations.',
+    // bio: 'Priya Sharma is the founder of multiple successful tech startups focused on social impact.',
+  },
+  {
+    id: 3,
+    name: 'Pratham Golcha',
+    role: '',
+    image: speaker3,
+    quote: 'Climate action depends not just on science, but on who controls the decisions and words.',
+    // bio: 'Prof. Suresh Menon has dedicated his career to transforming education through innovative teaching methodologies.',
+  },
+  {
+    id: 4,
+    name: 'Dr. Siddhant R',
+    role: '',
+    image: speaker4,
+    quote: 'The talk shows how disciplined listening can strengthen relationships and mental health.',
+    // bio: 'Dr. Ananya Rao is an award-winning neuroscientist whose research bridges the gap between brain science and everyday life.',
+  },
+   {
+    id: 5,
+    name: 'Dr. Lija Mohan',
+    role: '',
+    image: speaker5,
+    quote: 'Failures happen when we design for machines and forget the human.',
+    // bio: 'Dr. Ananya Rao is an award-winning neuroscientist whose research bridges the gap between brain science and everyday life.',
+  },
+   {
+    id: 6,
+    name: 'Dr. Santosh Karthikeyan V',
+    role: '',
+    image: speaker6,
+    quote: 'Humans and superintelligent AI can work together to build a better future.',
+    // bio: 'Dr. Ananya Rao is an award-winning neuroscientist whose research bridges the gap between brain science and everyday life.',
+  },
+   {
+    id: 7,
+    name: 'Dr. Prashanth S I.A.S',
+    role: '',
+    image: speaker7,
+    quote: 'True success is not about medals or ranks, but using excellence and resilience to serve a greater purpose.',
+    // bio: 'Dr. Ananya Rao is an award-winning neuroscientist whose research bridges the gap between brain science and everyday life.',
+  },
+   {
+    id: 8,
+    name: 'Dr. J J Adri Jovin',
+    role: '',
+    image: speaker8,
+    quote: 'AI improves learning only when used responsibly.',
+    // bio: 'Dr. Ananya Rao is an award-winning neuroscientist whose research bridges the gap between brain science and everyday life.',
+  },
+   {
+    id: 9,
+    name: 'Group Captian Ranjit Isaac (Retd.)',
+    role: 'Neuroscientist & Author',
+    image: speaker9,
+    quote: 'In the age of AI, human skills matter most.',
+    // bio: 'Dr. Ananya Rao is an award-winning neuroscientist whose research bridges the gap between brain science and everyday life.',
+  },
 ];
 
 const Speakers = () => {
@@ -64,7 +109,7 @@ const Speakers = () => {
 
       <section className="min-h-screen flex items-center relative pt-20">
         {/* Navigation Arrows */}
-        {/* <button
+        <button
           onClick={goToPrevious}
           className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-14 h-14 rounded-full glass flex items-center justify-center hover:bg-primary/20 transition-all duration-300 group"
         >
@@ -75,7 +120,7 @@ const Speakers = () => {
           className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-14 h-14 rounded-full glass flex items-center justify-center hover:bg-primary/20 transition-all duration-300 group"
         >
           <ChevronRight className="w-6 h-6 text-foreground group-hover:text-primary transition-colors" />
-        </button> */}
+        </button>
 
         {/* Content */}
         <div className="container mx-auto px-4 md:px-20">
@@ -91,14 +136,14 @@ const Speakers = () => {
                 <h2 className="text-2xl md:text-3xl font-bold text-foreground text-red-500">
                   {currentSpeaker.name}
                 </h2>
-                {/* <p className="text-primary text-lg font-medium">
+                <p className="text-primary text-lg font-medium">
                   {currentSpeaker.role}
-                </p> */}
-                {/* <p className="text-muted-foreground text-sm max-w-md mx-auto lg:mx-0">
+                </p> 
+                 <p className="text-muted-foreground text-sm max-w-md mx-auto lg:mx-0">
                   {currentSpeaker.bio}
-                </p> */}
+                </p>
                 
-                 <a
+                 {/* <a
                    href="https://docs.google.com/forms/d/e/1FAIpQLSdPEwXesUAyAoxYeSaxZooOykX298rWfcOP-jQboq5MfojI-w/viewform"
                    target="_blank"
                    rel="noopener noreferrer"
@@ -124,7 +169,7 @@ const Speakers = () => {
   Register
 </Button>
 
-                </a>
+                </a> */}
               </div>
             </div>
 

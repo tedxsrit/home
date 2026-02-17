@@ -1,0 +1,135 @@
+/* MorphingCard.css */
+
+.morphing-card {
+  /* Theme Variables - Dark Mode */
+  --bg: #1a1a1a;
+  --text-color: #e0e0e0;
+  --secondary-text: #aaa;
+  --accent-color: #e62b1e; /* TEDx Red */
+  
+  /* Dimensions */
+  width: 280px;
+  height: 400px;
+  
+  background: var(--bg);
+  border-radius: 1rem;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  /* Flex layout for centering content if needed, but primarily relative positioning */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.morphing-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(230, 43, 30, 0.2);
+}
+
+.morphing-card-image {
+  /* Key property for the morphing effect */
+  aspect-ratio: 2/3;
+  width: 100%;
+  object-fit: cover;
+  transition: aspect-ratio 0.5s ease, object-position 0.5s ease;
+  
+  /* Initially fill the card */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* On hover/focus-within: Morph the image to square */
+.morphing-card:hover .morphing-card-image,
+.morphing-card:focus-within .morphing-card-image {
+  aspect-ratio: 1/1;
+  /* Image stays at top */
+}
+
+/* Content Container */
+.morphing-card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem;
+  background: linear-gradient(to top, var(--bg) 0%, transparent 100%); /* optional gradient overlay */
+  z-index: 2;
+  
+  /* Initial hidden state for content details (except maybe name if we want it visible)
+     But for this effect, let's hide the details initially or push them down */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 60%; /* Occupy bottom part */
+  
+  /* Animation properties */
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  
+  /* Glassmorphism background for the content area */
+  background: rgba(20, 20, 20, 0.85);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Reveal content on hover/focus */
+.morphing-card:hover .morphing-card-content,
+.morphing-card:focus-within .morphing-card-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.morphing-card-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.morphing-card-role {
+  font-size: 1rem;
+  color: var(--accent-color);
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.morphing-card-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.morphing-social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.morphing-social-btn:hover {
+  background: var(--accent-color);
+  color: white;
+  transform: scale(1.1);
+  border-color: transparent;
+}
+
+.morphing-social-btn svg {
+  width: 20px;
+  height: 20px;
+}

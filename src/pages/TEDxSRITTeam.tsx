@@ -1,14 +1,55 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import './TEDxSRITTeam.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import MorphingCard from '@/components/MorphingCard';
+import { motion } from 'framer-motion';
 
 // Import your local images
 import Danish from '@/assets/techTeam/danish.jpg';
 import ashwin from '@/assets/techTeam/as.jpeg';
+import tech_head from '@/assets/teams/Tech_Ashwin.jpg'
 import Hemalnaath from '@/assets/techTeam/hemal.jpg';
 import Jashwanth from '@/assets/techTeam/jashwanth.jpeg';
-import Ashish from '@/assets/techTeam/ashish.jpg';
+import Ashish from '@/assets/techTeam/ashish2.jpg';
+
+// Hospitality
+import hospitalityDhanush from '@/assets/teams/hospitality_Dhanush.jpg';
+import hospitalityKarthiyayini from '@/assets/teams/hospitality_Karthiyayini.jpg';
+import hospitalityVikram from '@/assets/teams/hospitality_Vikram.jpg';
+import hospitalityYuvansekar from '@/assets/teams/hospitality_Yuvansekar.jpg';
+
+// Design & PR
+import designerVishnu from '@/assets/teams/designer_Vishnu.jpg';
+import designerHasna from '@/assets/teams/designer_Hasna.jpg';
+import designerYuvashree from '@/assets/teams/designer_Yuvashree.png';
+
+// Sponsors
+import sponsorsKavin from '@/assets/teams/sponsors_Kavin.jpg';
+import sponsorsSathya from '@/assets/teams/sponsors_Sathya.jpg';
+import sponsorsChitesh from '@/assets/teams/sponsors_Chitesh.png';
+
+// Speakers
+import speakersSharun from '@/assets/teams/speakers_Sharun.jpg';
+import speakersRoselin from '@/assets/teams/speakers_Roselin.jpeg';
+import speakersSaraMariyam from '@/assets/teams/speakers_SaraMariyam.webp';
+import speakersShruthiDevi from '@/assets/teams/speakers_ShruthiDevi.jpeg';
+
+// Curation
+import curationVasunthara from '@/assets/teams/curation_Vasunthara.jpg';
+import curationAugustian from '@/assets/teams/curation_Augustian.jpeg';
+
+
+
+// Logistics
+import logisticsAswin from '@/assets/teams/logistics_Aswin.jpg';
+import logisticsAkshaya from '@/assets/teams/logistics_Akshaya.jpg';
+import logisticsEshapriya from '@/assets/teams/logistics_Eshapriya.jpg';
+import logisticsKevinJeffrey from '@/assets/teams/logistics_KevinJeffrey.jpg';
+import logisticsMrigesh from '@/assets/teams/logistics_Mrigesh.png';
+import logisticsSangavi from '@/assets/teams/logisticsSangavi.jpg'
+import logisticsSivamanoj from '@/assets/teams/logistics_Sivamanoj.jpg';
+import logisticsSreepriya from '@/assets/teams/logistics_Sreepriya.jpg';
 
 interface TeamMember {
   id: number;
@@ -23,114 +64,344 @@ interface TeamMember {
 
 const TEDxSRITTeam: React.FC = () => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
-  const [flippedCards, setFlippedCards] = useState<number[]>([]);
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-  
+
   // Check if device is mobile
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
-    
+
     return () => {
       window.removeEventListener('resize', checkMobile);
     };
   }, []);
-  
+
+  const getFallbackImage = (name: string): string => {
+    return `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=e62b1e&color=fff&bold=true&size=150`;
+  };
+
   // Organiser Team
   const organiserTeam: TeamMember[] = [
-    { 
-      id: 1, 
-      name: 'Danish Veer Magotra', 
-      role: 'Licensee and Lead Organiser', 
-      team: 'Organiser', 
-      image: Danish, 
+    {
+      id: 1,
+      name: 'Danish Veer Magotra',
+      role: 'Licensee and Lead Organiser',
+      team: 'Organiser',
+      image: Danish,
       isHead: true,
       linkedin: 'https://www.linkedin.com/in/danish-veer-magotra/',
       instagram: 'https://www.instagram.com/magotrasaab/?hl=en'
     },
   ];
-  
+
   // Tech Team
   const techTeam: TeamMember[] = [
-    { 
-      id: 2, 
-      name: 'Ashwin R', 
-      role: 'Chief of Technology', 
-      team: 'Tech Team', 
-      image: ashwin, 
+    {
+      id: 2,
+      name: 'Ashwin R',
+      role: 'Chief of Technology',
+      team: 'Tech Team',
+      image: ashwin,
       isHead: true,
       linkedin: 'https://www.linkedin.com/in/ashwin-robert05/',
-      instagram: 'https://instagram.com/example2'
+      // instagram: 'https://instagram.com/example2'
     },
-    { 
-      id: 3, 
-      name: 'Hemalnaath G', 
-      role: 'UI/UX Designer', 
-      team: 'Tech Team', 
-      image: Hemalnaath, 
+    {
+      id: 3,
+      name: 'Hemalnaath G',
+      role: 'UI/UX Designer',
+      team: 'Tech Team',
+      image: Hemalnaath,
       isHead: false,
       linkedin: 'https://www.linkedin.com/in/hemalnaath-ganesan-702a90297?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
       instagram: 'https://www.instagram.com/hemalnaath10?utm_source=qr&igsh=MXhvcW9ibWU2bDhkMg=='
     },
-    { 
-      id: 4, 
-      name: 'Jashwanth G P', 
-      role: 'Web Developer', 
-      team: 'Tech Team', 
-      image: Jashwanth, 
+    {
+      id: 4,
+      name: 'Jashwanth G P',
+      role: 'Web Developer',
+      team: 'Tech Team',
+      image: Jashwanth,
       isHead: false,
       linkedin: 'https://www.linkedin.com/in/jashwanth-g-p-32650330b/',
       instagram: 'https://www.instagram.com/_jashwanth.05_'
     },
-    { 
-      id: 5, 
-      name: 'Ashish M Manon', 
-      role: 'UI Enhanser', 
-      team: 'Tech Team', 
-      image: Ashish, 
+    {
+      id: 5,
+      name: 'Ashish M Manon',
+      role: 'UI Enhanser',
+      team: 'Tech Team',
+      image: Ashish,
       isHead: false,
       linkedin: 'https://www.linkedin.com/in/ashish-m-menon-4541a9333/',
-      instagram: 'https://www.linkedin.com/in/ashish-m-menon-4541a9333/'
+     
     },
   ];
   // Hospitality Team
-const hospitalityTeam: TeamMember[] = [
-  { id: 20, name: 'Hospitality Head', role: 'Chief of Hospitality', team: 'Hospitality Team', image: Danish, isHead: true },
-  { id: 21, name: 'Member 1', role: 'Coordinator', team: 'Hospitality Team', image: Danish, isHead: false },
-];
+  const hospitalityTeam: TeamMember[] = [
+    {
+      id: 20,
+      name: 'Dhanush S',
+      role: 'Head',
+      team: 'Hospitality Team',
+      image: hospitalityDhanush,
+      isHead: true,
+      linkedin: 'https://www.linkedin.com/in/dhanush-senthilkumar-3429132b1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+      instagram: 'https://www.instagram.com/dhanushsenthil7765'
+    },
+    {
+      id: 21,
+      name: 'Karthiyayini S',
+      role: 'Member',
+      team: 'Hospitality Team',
+      image: hospitalityKarthiyayini,
+      isHead: false,
+      linkedin: 'https://www.linkedin.com/in/karthiyayini-s-021a27250?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+      instagram: 'https://www.instagram.com/_lunaria_325'
+    },
+    {
+      id: 22,
+      name: 'Vikram R',
+      role: 'Member',
+      team: 'Hospitality Team',
+      image: hospitalityVikram,
+      isHead: false,
+      linkedin: 'https://www.linkedin.com/in/vikram-r-78927829a?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+     
+    },
+    {
+      id: 23,
+      name: 'Yuvansekar C',
+      role: 'Member',
+      team: 'Hospitality Team',
+      image: hospitalityYuvansekar,
+      isHead: false,
+      linkedin: 'https://www.linkedin.com/in/yuvansekar-c?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+      instagram: 'https://www.instagram.com/yuvan__sekar___yt'
+    },
+  ];
 
-// Marketing Team
-const marketingTeam: TeamMember[] = [
-  { id: 30, name: 'Marketing Head', role: 'Chief of Marketing', team: 'Marketing Team', image: Danish, isHead: true },
-  { id: 31, name: 'Member 1', role: 'Promotions', team: 'Marketing Team', image: Danish, isHead: false },
-];
+  // Design & PR Team
+  const designPrTeam: TeamMember[] = [
+    {
+      id: 30,
+      name: 'Vishnu Sathish Kumar',
+      role: 'Member',
+      team: 'Design & PR Team',
+      image: designerVishnu,
+      isHead: false,
+    
+      instagram: 'https://www.instagram.com/thevishnuvr?igsh=MWxianFrOGpoaWpp&utm_source=qr'
+    },
+    {
+      id: 31,
+      name: 'Hasna Behum H',
+      role: 'Member',
+      team: 'Design & PR Team',
+      image: designerHasna,
+      isHead: false,
+      linkedin: 'https://www.linkedin.com/in/hasna-behum-2b6bb7365',
+      instagram: 'https://www.instagram.com/_.exs.pressoo_'
+    },
+    {
+      id: 32,
+      name: 'Yuvashree S N',
+      role: 'Member',
+      team: 'Design & PR Team',
+      image: designerYuvashree,
+      isHead: false,
+      linkedin: 'https://www.linkedin.com/in/yuva-shre-505127336',
+      instagram: 'https://www.instagram.com/you.__.va'
+    },
+  ];
 
-// Design Team
-const designTeam: TeamMember[] = [
-  { id: 40, name: 'Design Head', role: 'Chief Designer', team: 'Design Team', image: Danish, isHead: true },
-  { id: 41, name: 'Member 1', role: 'Graphic Designer', team: 'Design Team', image: Danish, isHead: false },
-];
+  // Sponsors Team
+  const sponsorsTeam: TeamMember[] = [
+    {
+      id: 40,
+      name: 'Kavinilavan M R',
+      role: 'Head',
+      team: 'Sponsors Team',
+      image: sponsorsKavin,
+      isHead: true,
+      linkedin: 'https://www.linkedin.com/in/kavinilavan-m-r-90a06b378?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+      instagram: 'https://www.instagram.com/kavinilavan_26?igsh=djVpOXhtZ2hzdG1n'
+    },
+    {
+      id: 41,
+      name: 'Sathya Sharub',
+      role: 'Member',
+      team: 'Sponsors Team',
+      image: sponsorsSathya,
+      isHead: false,
+      linkedin: 'https://www.linkedin.com/in/sathya-sharub-209813290',
+      instagram: 'https://www.instagram.com/sathya_sharub'
+    },
+    {
+      id: 42,
+      name: 'Chitesh P S',
+      role: 'Member',
+      team: 'Sponsors Team',
+      image: sponsorsChitesh,
+      isHead: false,
+      linkedin: 'https://linkedin.com/in/chiteshsoundar',
+      instagram: 'https://www.instagram.com/chitesh__16?igsh=bGZ1bnNod2MxeHNn'
+    },
+  ];
 
-// Operations Team
-const operationsTeam: TeamMember[] = [
-  { id: 50, name: 'Operations Head', role: 'Chief of Operations', team: 'Operations Team', image: Danish, isHead: true },
-  { id: 51, name: 'Member 1', role: 'Logistics', team: 'Operations Team', image: Danish, isHead: false },
-];
+  // Speakers Team
+  const speakersTeam: TeamMember[] = [
+    {
+      id: 50,
+      name: 'Sharun K',
+      role: 'Head',
+      team: 'Speakers Team',
+      image: speakersSharun,
+      isHead: true,
+      linkedin: 'https://in.linkedin.com/in/sharunkumarworks',
+      instagram: 'https://www.instagram.com/sharunk45'
+    },
+    {
+      id: 51,
+      name: 'Roselin Blessy S',
+      role: 'Member',
+      team: 'Speakers Team',
+      image: speakersRoselin,
+      isHead: false,
+      linkedin: 'https://www.linkedin.com/in/roselin-blessy-s-6960783b1?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+      instagram: 'https://www.instagram.com/rossy_lavender'
+    },
+    {
+      id: 52,
+      name: 'Sara Mariyam',
+      role: 'Member',
+      team: 'Speakers Team',
+      image: speakersSaraMariyam,
+      isHead: false,
+      linkedin: 'https://www.linkedin.com/in/sara-mariyam-2a304a311?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+      instagram: 'https://www.instagram.com/saaraa.a19'
+    },
+    {
+      id: 53,
+      name: 'Shruthi Devi AK',
+      role: 'Member',
+      team: 'Speakers Team',
+      image: speakersShruthiDevi,
+      isHead: false,
+      linkedin: 'https://www.linkedin.com/in/shruthi-devi-681648339?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+      instagram: 'https://www.instagram.com/xo.Shruthideviak_'
+    },
+  ];
 
-// Content Team
-const contentTeam: TeamMember[] = [
-  { id: 60, name: 'Content Head', role: 'Chief of Content', team: 'Content Team', image: Danish, isHead: true },
-  { id: 61, name: 'Member 1', role: 'Writer', team: 'Content Team', image: Danish, isHead: false },
-];
+  // Curation Team
+  const curationTeam: TeamMember[] = [
+    {
+      id: 60,
+      name: 'D. Augustin Anandraj',
+      role: 'Member',
+      team: 'Curation Team',
+      image: curationAugustian,
+      isHead: false,
+      linkedin: 'https://www.linkedin.com/in/d-augustin-anandraj-26324a228?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+      instagram: 'https://www.instagram.com/augus_heart_'
+    },
+    {
+      id: 61,
+      name: 'Vasunthara P V',
+      role: 'Member',
+      team: 'Curation Team',
+      image: curationVasunthara,
+      isHead: false,
+      linkedin: 'https://www.linkedin.com/in/vasunthara-p-v-63bb5732a?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+      instagram: 'https://www.instagram.com/_.tharazzzz?igsh=YnU5MG5nN2JicjYw'
+    },
+  ];
 
+  // Logistics Team
+  const logisticsTeam: TeamMember[] = [
+    {
+      id: 70,
+      name: 'Aswin P',
+      role: 'Head',
+      team: 'Logistics Team',
+      image: logisticsAswin,
+      isHead: true,
+      linkedin: 'https://www.linkedin.com/in/aswin-p-194b97250?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+      instagram: 'https://www.instagram.com/aswin_prabakaran_?utm_source=qr&igsh=M2lmajFsNzFraWFq'
+    },
+    {
+      id: 71,
+      name: 'Akshaya V',
+      role: 'Member',
+      team: 'Logistics Team',
+      image: logisticsAkshaya,
+      isHead: false,
+      linkedin: 'https://www.linkedin.com/in/akshaya-v-0754a932a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+      instagram: 'https://www.instagram.com/_a_x_sh_u?igsh=MXZzODFjYjU1cjl5OA=='
+    },
+    {
+      id: 72,
+      name: 'A. Eshapriya',
+      role: 'Member',
+      team: 'Logistics Team',
+      image: logisticsEshapriya,
+      isHead: false,
+      linkedin: 'https://www.linkedin.com/in/eshapriya-a-092784398?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+      instagram: 'https://www.instagram.com/eshapriya__120'
+    },
+    {
+      id: 73,
+      name: 'Kevin Jeffrey',
+      role: 'Member',
+      team: 'Logistics Team',
+      image: logisticsKevinJeffrey,
+      isHead: false,
+      linkedin: 'https://www.linkedin.com/in/kevin-jeffrey-02564b315?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+      instagram: 'https://www.instagram.com/kev_jeff_07'
+    },
+    {
+      id: 74,
+      name: 'Mirjesh A',
+      role: 'Member',
+      team: 'Logistics Team',
+      image: logisticsMrigesh,
+      isHead: false,
+      linkedin: 'https://www.linkedin.com/in/mirjesh-a-a2a92532a?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+      instagram: 'https://www.instagram.com/momz_little_kid_'
+    },
+    {
+      id: 75,
+      name: 'Sangavi',
+      role: 'Member',
+      team: 'Logistics Team',
+      image: logisticsSangavi,
+      isHead: false,
+      
+    },
+    {
+      id: 76,
+      name: 'Sivamanoj S',
+      role: 'Member',
+      team: 'Logistics Team',
+      image: logisticsSivamanoj,
+      isHead: false,
+      linkedin: 'https://www.linkedin.com/in/sivamanoj-s-066782337?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+      instagram: 'https://www.instagram.com/ss_manoj_07?igsh=d3N1ZmU3aTM4bmc1'
+    },
+    {
+      id: 77,
+      name: 'Sree Priyan',
+      role: 'Member',
+      team: 'Logistics Team',
+      image: logisticsSreepriya,
+      isHead: false,
+     
+    },
+  ];
 
-  const getFallbackImage = (name: string): string => {
-    return `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=e62b1e&color=fff&bold=true&size=150`;
-  };
 
   // Handle social link clicks
   const handleSocialClick = (url: string | undefined, e: React.MouseEvent) => {
@@ -140,12 +411,104 @@ const contentTeam: TeamMember[] = [
     }
   };
 
+  // Animation Variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.1
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut" as const
+      }
+    }
+  };
+
+  const renderTeamSection = (title: string, description: string, team: TeamMember[], teamNumber: string) => {
+    const heads = team.filter(member => member.isHead);
+    const members = team.filter(member => !member.isHead);
+
+    return (
+      <section className="team-section tech-section">
+        <div className="section-header">
+          <div className="section-title-wrapper">
+            {teamNumber && <span className="section-title-number">{teamNumber}</span>}
+            <h2 className="section-title">{title}</h2>
+          </div>
+          {description && <p className="section-description">{description}</p>}
+        </div>
+
+        {/* Heads */}
+        {heads.length > 0 && (
+          <motion.div
+            className="team-heads-grid"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            {heads.map(head => (
+              <motion.div key={head.id} className="team-card-wrapper" variants={cardVariants}>
+                <MorphingCard
+                  image={head.image}
+                  name={head.name}
+                  role={head.role}
+                  linkedin={head.linkedin}
+                  instagram={head.instagram}
+                  onSocialClick={handleSocialClick}
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+
+        {/* Members */}
+        {members.length > 0 && (
+          <div className="team-members-section">
+            {heads.length > 0 && <h3 className="team-members-title">Team Members</h3>}
+            <motion.div
+              className="team-members-grid"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+            >
+              {members.map(member => (
+                <motion.div key={member.id} className="team-card-wrapper" variants={cardVariants}>
+                  <MorphingCard
+                    image={member.image}
+                    name={member.name}
+                    role={member.role}
+                    linkedin={member.linkedin}
+                    instagram={member.instagram}
+                    onSocialClick={handleSocialClick}
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        )}
+      </section>
+    );
+  };
+
   return (
     <div className="tedx-container">
       {/* Background Elements */}
       <div className="bg-grid"></div>
       <div className="bg-circles"></div>
-      
+
       {/* Floating Particles */}
       <div className="particles">
         {[...Array(15)].map((_, i) => (
@@ -164,8 +527,14 @@ const contentTeam: TeamMember[] = [
       </div>
 
       <header className="tedx-header">
-        <div className="tedx-tagline">Meet Our TEDx Team</div>
-        <div className="tedx-header-line"></div>
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="tedx-tagline">Meet Our TEDx Team</div>
+          <div className="tedx-header-line"></div>
+        </motion.div>
       </header>
 
       <main className="tedx-main">
@@ -176,1128 +545,52 @@ const contentTeam: TeamMember[] = [
               <h2 className="section-title">ORGANISER</h2>
             </div>
           </div>
-          
-          <div className="team-heads-grid">
+
+          <motion.div
+            className="team-heads-grid"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
             {organiserTeam.map(member => (
-              <div key={member.id} className="team-card-head-wrapper">
-                {/* Desktop View - Flip Card */}
-                {!isMobile ? (
-                  <div 
-                    className={`team-card-head ${flippedCards.includes(member.id) ? 'flipped' : ''}`}
-                  >
-                    <div className="team-card-inner">
-                      {/* Front Side */}
-                      <div className="team-card-front">
-                        <div className="team-head-glow"></div>
-                        <div className="team-head-image-container">
-                          <img 
-                            src={member.image} 
-                            alt={member.name} 
-                            className="team-head-image"
-                            onError={(e) => {
-                              e.currentTarget.src = getFallbackImage(member.name);
-                            }}
-                          />
-                          <div className="team-head-crown"></div>
-                          {/* <div className="team-head-badge">TEAM LEAD</div> */}
-                        </div>
-                        
-                        <div className="team-head-details">
-                          <div className="team-head-name">{member.name}</div>
-                          <div className="team-head-role">{member.role}</div>
-                          {/* <div className="team-head-tag">{member.team.toUpperCase()}</div> */}
-                        </div>
-                      </div>
-                      
-                      {/* Back Side - Social Media */}
-                      <div className="team-card-back">
-                        <div className="team-card-back-content">
-                          <div className="back-title">Connect with {member.name.split(' ')[0]}</div>
-                          <div className="back-role">{member.role}</div>
-                          
-                          <div className="social-links">
-                            <a 
-                              href={member.linkedin || '#'} 
-                              className="social-link linkedin"
-                              onClick={(e) => handleSocialClick(member.linkedin, e)}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <div className="social-icon-wrapper">
-                                <svg viewBox="0 0 24 24" fill="currentColor">
-                                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                                </svg>
-                              </div>
-                              <span className="social-link-text">LinkedIn</span>
-                            </a>
-                            
-                            <a 
-                              href={member.instagram || '#'} 
-                              className="social-link instagram"
-                              onClick={(e) => handleSocialClick(member.instagram, e)}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <div className="social-icon-wrapper">
-                                <svg viewBox="0 0 24 24" fill="currentColor">
-                                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                                </svg>
-                              </div>
-                              <span className="social-link-text">Instagram</span>
-                            </a>
-                          </div>
-                          
-                          <div className="back-quote">"Leading with passion, delivering with purpose"</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  // Mobile View - Simple Card (like team members)
-                  <div className="team-member-card mobile-head-card">
-                    <div className="member-card-inner">
-                      <div className="member-image-wrapper">
-                        <img 
-                          src={member.image} 
-                          alt={member.name} 
-                          className="member-image"
-                          onError={(e) => {
-                            e.currentTarget.src = getFallbackImage(member.name);
-                          }}
-                        />
-                        <div className="member-image-frame"></div>
-                        <div className="head-badge-mobile">TEAM LEAD</div>
-                        <div className="member-social-overlay">
-                          <a 
-                            href={member.linkedin || '#'} 
-                            className="member-social-icon linkedin"
-                            onClick={(e) => handleSocialClick(member.linkedin, e)}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                            </svg>
-                          </a>
-                          <a 
-                            href={member.instagram || '#'} 
-                            className="member-social-icon instagram"
-                            onClick={(e) => handleSocialClick(member.instagram, e)}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                            </svg>
-                          </a>
-                        </div>
-                      </div>
-                      
-                      <div className="member-details">
-                        <div className="member-name">{member.name}</div>
-                        <div className="member-role">{member.role}</div>
-                        {/* <div className="member-team-tag">{member.team.toUpperCase()}</div> */}
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
+              <motion.div key={member.id} className="team-card-wrapper" variants={cardVariants}>
+                <MorphingCard
+                  image={member.image}
+                  name={member.name}
+                  role={member.role}
+                  linkedin={member.linkedin}
+                  instagram={member.instagram}
+                  onSocialClick={handleSocialClick}
+                />
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </section>
 
         {/* Tech Team Section */}
-        <section className="team-section tech-section">
-          <div className="section-header">
-            <div className="section-title-wrapper">
-              
-              <h2 className="section-title">TECH TEAM</h2>
-            </div>
-            <p className="section-description">Building the digital experience behind TEDxSRIT</p>
-          </div>
-          
-          {/* Tech Head */}
-          <div className="team-heads-grid">
-            {techTeam.filter(member => member.isHead).map(head => (
-              <div key={head.id} className="team-card-head-wrapper">
-                {/* Desktop View - Flip Card */}
-                {!isMobile ? (
-                  <div className={`team-card-head ${flippedCards.includes(head.id) ? 'flipped' : ''}`}>
-                    <div className="team-card-inner">
-                      {/* Front Side */}
-                      <div className="team-card-front">
-                        <div className="team-head-glow"></div>
-                        <div className="team-head-image-container">
-                          <img 
-                            src={head.image} 
-                            alt={head.name} 
-                            className="team-head-image"
-                            onError={(e) => {
-                              e.currentTarget.src = getFallbackImage(head.name);
-                            }}
-                          />
-                          
-                          <div className="team-head-badge">TEAM LEAD</div>
-                        </div>
-                        
-                        <div className="team-head-details">
-                          <div className="team-head-name">{head.name}</div>
-                          <div className="team-head-role">{head.role}</div>
-                          {/* <div className="team-head-tag">{head.team.toUpperCase()}</div> */}
-                        </div>
-                      </div>
-                      
-                      {/* Back Side - Social Media */}
-                      <div className="team-card-back">
-                        <div className="team-card-back-content">
-                          <div className="back-title">Connect with {head.name.split(' ')[0]}</div>
-                          <div className="back-role">{head.role}</div>
-                          
-                          <div className="social-links">
-                            <a 
-                              href={head.linkedin || '#'} 
-                              className="social-link linkedin"
-                              onClick={(e) => handleSocialClick(head.linkedin, e)}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <div className="social-icon-wrapper">
-                                <svg viewBox="0 0 24 24" fill="currentColor">
-                                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                                </svg>
-                              </div>
-                              <span className="social-link-text">LinkedIn</span>
-                            </a>
-                          </div>
-                          
-                          <div className="back-quote">"Innovating with purpose, building with passion"</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  // Mobile View - Simple Card (like team members)
-                  <div className="team-member-card mobile-head-card">
-                    <div className="member-card-inner">
-                      <div className="member-image-wrapper">
-                        <img 
-                          src={head.image} 
-                          alt={head.name} 
-                          className="member-image"
-                          onError={(e) => {
-                            e.currentTarget.src = getFallbackImage(head.name);
-                          }}
-                        />
-                        <div className="member-image-frame"></div>
-                        <div className="head-badge-mobile">TEAM LEAD</div>
-                        <div className="member-social-overlay">
-                          <a 
-                            href={head.linkedin || '#'} 
-                            className="member-social-icon linkedin"
-                            onClick={(e) => handleSocialClick(head.linkedin, e)}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                            </svg>
-                          </a>
-                        </div>
-                      </div>
-                      
-                      <div className="member-details">
-                        <div className="member-name">{head.name}</div>
-                        <div className="member-role">{head.role}</div>
-                        {/* <div className="member-team-tag">{head.team.toUpperCase()}</div> */}
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-          
-          {/* Tech Team Members */}
-          <div className="team-members-section">
-            <h3 className="team-members-title">Team Members</h3>
-            <div className="team-members-grid">
-              {techTeam.filter(member => !member.isHead).map(member => (
-                <div key={member.id} className="team-member-card">
-                  <div className="member-card-inner">
-                    <div className="member-image-wrapper">
-                      <img 
-                        src={member.image} 
-                        alt={member.name} 
-                        className="member-image"
-                        onError={(e) => {
-                          e.currentTarget.src = getFallbackImage(member.name);
-                        }}
-                      />
-                      <div className="member-image-frame"></div>
-                      <div className="member-social-overlay">
-                        <a 
-                          href={member.linkedin || '#'} 
-                          className="member-social-icon linkedin"
-                          onClick={(e) => handleSocialClick(member.linkedin, e)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                          </svg>
-                        </a>
-                        <a 
-                          href={member.instagram || '#'} 
-                          className="member-social-icon instagram"
-                          onClick={(e) => handleSocialClick(member.instagram, e)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                          </svg>
-                        </a>
-                      </div>
-                    </div>
-                    
-                    <div className="member-details">
-                      <div className="member-name">{member.name}</div>
-                      <div className="member-role">{member.role}</div>
-                      {/* <div className="member-team-tag">{member.team.toUpperCase()}</div> */}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        {renderTeamSection("TECH TEAM", "Building the digital experience behind TEDxSRIT", techTeam, "")}
 
-        {/* FUTURE TEAMS (hidden for now) */}
-<div className="future-teams-hidden">
+        {/* Design & PR Team */}
+        {renderTeamSection("DESIGNERS & PR TEAM", "Crafting the visual identity and managing public presence", designPrTeam, "02")}
 
-       <section className="team-section tech-section">
-          <div className="section-header">
-            <div className="section-title-wrapper">
-              <span className="section-title-number">02</span>
-              <h2 className="section-title">HOSPITALITY TEAM</h2>
-            </div>
-            <p className="section-description">Building the digital experience behind TEDxSRIT</p>
-          </div>
-          
-          {/* Tech Head */}
-          <div className="team-heads-grid">
-            {techTeam.filter(member => member.isHead).map(head => (
-              <div key={head.id} className="team-card-head-wrapper">
-                {/* Desktop View - Flip Card */}
-                {!isMobile ? (
-                  <div className={`team-card-head ${flippedCards.includes(head.id) ? 'flipped' : ''}`}>
-                    <div className="team-card-inner">
-                      {/* Front Side */}
-                      <div className="team-card-front">
-                        <div className="team-head-glow"></div>
-                        <div className="team-head-image-container">
-                          <img 
-                            src={head.image} 
-                            alt={head.name} 
-                            className="team-head-image"
-                            onError={(e) => {
-                              e.currentTarget.src = getFallbackImage(head.name);
-                            }}
-                          />
-                          <div className="team-head-crown">~</div>
-                          <div className="team-head-badge">TEAM LEAD</div>
-                        </div>
-                        
-                        <div className="team-head-details">
-                          <div className="team-head-name">{head.name}</div>
-                          <div className="team-head-role">{head.role}</div>
-                          {/* <div className="team-head-tag">{head.team.toUpperCase()}</div> */}
-                        </div>
-                      </div>
-                      
-                      {/* Back Side - Social Media */}
-                      <div className="team-card-back">
-                        <div className="team-card-back-content">
-                          <div className="back-title">Connect with {head.name.split(' ')[0]}</div>
-                          <div className="back-role">{head.role}</div>
-                          
-                          <div className="social-links">
-                            <a 
-                              href={head.linkedin || '#'} 
-                              className="social-link linkedin"
-                              onClick={(e) => handleSocialClick(head.linkedin, e)}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <div className="social-icon-wrapper">
-                                <svg viewBox="0 0 24 24" fill="currentColor">
-                                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                                </svg>
-                              </div>
-                              <span className="social-link-text">LinkedIn</span>
-                            </a>
-                          </div>
-                          
-                          <div className="back-quote">"Innovating with purpose, building with passion"</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  // Mobile View - Simple Card (like team members)
-                  <div className="team-member-card mobile-head-card">
-                    <div className="member-card-inner">
-                      <div className="member-image-wrapper">
-                        <img 
-                          src={head.image} 
-                          alt={head.name} 
-                          className="member-image"
-                          onError={(e) => {
-                            e.currentTarget.src = getFallbackImage(head.name);
-                          }}
-                        />
-                        <div className="member-image-frame"></div>
-                        <div className="head-badge-mobile">TEAM LEAD</div>
-                        <div className="member-social-overlay">
-                          <a 
-                            href={head.linkedin || '#'} 
-                            className="member-social-icon linkedin"
-                            onClick={(e) => handleSocialClick(head.linkedin, e)}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                            </svg>
-                          </a>
-                        </div>
-                      </div>
-                      
-                      <div className="member-details">
-                        <div className="member-name">{head.name}</div>
-                        <div className="member-role">{head.role}</div>
-                        {/* <div className="member-team-tag">{head.team.toUpperCase()}</div> */}
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-          
-          {/* Tech Team Members */}
-          <div className="team-members-section">
-            <h3 className="team-members-title">Team Members</h3>
-            <div className="team-members-grid">
-              {techTeam.filter(member => !member.isHead).map(member => (
-                <div key={member.id} className="team-member-card">
-                  <div className="member-card-inner">
-                    <div className="member-image-wrapper">
-                      <img 
-                        src={member.image} 
-                        alt={member.name} 
-                        className="member-image"
-                        onError={(e) => {
-                          e.currentTarget.src = getFallbackImage(member.name);
-                        }}
-                      />
-                      <div className="member-image-frame"></div>
-                      <div className="member-social-overlay">
-                        <a 
-                          href={member.linkedin || '#'} 
-                          className="member-social-icon linkedin"
-                          onClick={(e) => handleSocialClick(member.linkedin, e)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                          </svg>
-                        </a>
-                        <a 
-                          href={member.instagram || '#'} 
-                          className="member-social-icon instagram"
-                          onClick={(e) => handleSocialClick(member.instagram, e)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                          </svg>
-                        </a>
-                      </div>
-                    </div>
-                    
-                    <div className="member-details">
-                      <div className="member-name">{member.name}</div>
-                      <div className="member-role">{member.role}</div>
-                      {/* <div className="member-team-tag">{member.team.toUpperCase()}</div> */}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-        <section className="team-section tech-section">
-          <div className="section-header">
-            <div className="section-title-wrapper">
-              <span className="section-title-number">02</span>
-              <h2 className="section-title">MARKETING TEAM</h2>
-            </div>
-            <p className="section-description">Building the digital experience behind TEDxSRIT</p>
-          </div>
-          
-          {/* Tech Head */}
-          <div className="team-heads-grid">
-            {techTeam.filter(member => member.isHead).map(head => (
-              <div key={head.id} className="team-card-head-wrapper">
-                {/* Desktop View - Flip Card */}
-                {!isMobile ? (
-                  <div className={`team-card-head ${flippedCards.includes(head.id) ? 'flipped' : ''}`}>
-                    <div className="team-card-inner">
-                      {/* Front Side */}
-                      <div className="team-card-front">
-                        <div className="team-head-glow"></div>
-                        <div className="team-head-image-container">
-                          <img 
-                            src={head.image} 
-                            alt={head.name} 
-                            className="team-head-image"
-                            onError={(e) => {
-                              e.currentTarget.src = getFallbackImage(head.name);
-                            }}
-                          />
-                          <div className="team-head-crown">~</div>
-                          <div className="team-head-badge">TEAM LEAD</div>
-                        </div>
-                        
-                        <div className="team-head-details">
-                          <div className="team-head-name">{head.name}</div>
-                          <div className="team-head-role">{head.role}</div>
-                          {/* <div className="team-head-tag">{head.team.toUpperCase()}</div> */}
-                        </div>
-                      </div>
-                      
-                      {/* Back Side - Social Media */}
-                      <div className="team-card-back">
-                        <div className="team-card-back-content">
-                          <div className="back-title">Connect with {head.name.split(' ')[0]}</div>
-                          <div className="back-role">{head.role}</div>
-                          
-                          <div className="social-links">
-                            <a 
-                              href={head.linkedin || '#'} 
-                              className="social-link linkedin"
-                              onClick={(e) => handleSocialClick(head.linkedin, e)}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <div className="social-icon-wrapper">
-                                <svg viewBox="0 0 24 24" fill="currentColor">
-                                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                                </svg>
-                              </div>
-                              <span className="social-link-text">LinkedIn</span>
-                            </a>
-                          </div>
-                          
-                          <div className="back-quote">"Innovating with purpose, building with passion"</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  // Mobile View - Simple Card (like team members)
-                  <div className="team-member-card mobile-head-card">
-                    <div className="member-card-inner">
-                      <div className="member-image-wrapper">
-                        <img 
-                          src={head.image} 
-                          alt={head.name} 
-                          className="member-image"
-                          onError={(e) => {
-                            e.currentTarget.src = getFallbackImage(head.name);
-                          }}
-                        />
-                        <div className="member-image-frame"></div>
-                        <div className="head-badge-mobile">TEAM LEAD</div>
-                        <div className="member-social-overlay">
-                          <a 
-                            href={head.linkedin || '#'} 
-                            className="member-social-icon linkedin"
-                            onClick={(e) => handleSocialClick(head.linkedin, e)}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                            </svg>
-                          </a>
-                        </div>
-                      </div>
-                      
-                      <div className="member-details">
-                        <div className="member-name">{head.name}</div>
-                        <div className="member-role">{head.role}</div>
-                        {/* <div className="member-team-tag">{head.team.toUpperCase()}</div> */}
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-          
-          {/* Tech Team Members */}
-          <div className="team-members-section">
-            <h3 className="team-members-title">Team Members</h3>
-            <div className="team-members-grid">
-              {techTeam.filter(member => !member.isHead).map(member => (
-                <div key={member.id} className="team-member-card">
-                  <div className="member-card-inner">
-                    <div className="member-image-wrapper">
-                      <img 
-                        src={member.image} 
-                        alt={member.name} 
-                        className="member-image"
-                        onError={(e) => {
-                          e.currentTarget.src = getFallbackImage(member.name);
-                        }}
-                      />
-                      <div className="member-image-frame"></div>
-                      <div className="member-social-overlay">
-                        <a 
-                          href={member.linkedin || '#'} 
-                          className="member-social-icon linkedin"
-                          onClick={(e) => handleSocialClick(member.linkedin, e)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                          </svg>
-                        </a>
-                        <a 
-                          href={member.instagram || '#'} 
-                          className="member-social-icon instagram"
-                          onClick={(e) => handleSocialClick(member.instagram, e)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                          </svg>
-                        </a>
-                      </div>
-                    </div>
-                    
-                    <div className="member-details">
-                      <div className="member-name">{member.name}</div>
-                      <div className="member-role">{member.role}</div>
-                      {/* <div className="member-team-tag">{member.team.toUpperCase()}</div> */}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-        <section className="team-section tech-section">
-          <div className="section-header">
-            <div className="section-title-wrapper">
-              <span className="section-title-number">02</span>
-              <h2 className="section-title">DESIGN TEAM</h2>
-            </div>
-            <p className="section-description">Building the digital experience behind TEDxSRIT</p>
-          </div>
-          
-          {/* Tech Head */}
-          <div className="team-heads-grid">
-            {techTeam.filter(member => member.isHead).map(head => (
-              <div key={head.id} className="team-card-head-wrapper">
-                {/* Desktop View - Flip Card */}
-                {!isMobile ? (
-                  <div className={`team-card-head ${flippedCards.includes(head.id) ? 'flipped' : ''}`}>
-                    <div className="team-card-inner">
-                      {/* Front Side */}
-                      <div className="team-card-front">
-                        <div className="team-head-glow"></div>
-                        <div className="team-head-image-container">
-                          <img 
-                            src={head.image} 
-                            alt={head.name} 
-                            className="team-head-image"
-                            onError={(e) => {
-                              e.currentTarget.src = getFallbackImage(head.name);
-                            }}
-                          />
-                          <div className="team-head-crown">~</div>
-                          <div className="team-head-badge">TEAM LEAD</div>
-                        </div>
-                        
-                        <div className="team-head-details">
-                          <div className="team-head-name">{head.name}</div>
-                          <div className="team-head-role">{head.role}</div>
-                          {/* <div className="team-head-tag">{head.team.toUpperCase()}</div> */}
-                        </div>
-                      </div>
-                      
-                      {/* Back Side - Social Media */}
-                      <div className="team-card-back">
-                        <div className="team-card-back-content">
-                          <div className="back-title">Connect with {head.name.split(' ')[0]}</div>
-                          <div className="back-role">{head.role}</div>
-                          
-                          <div className="social-links">
-                            <a 
-                              href={head.linkedin || '#'} 
-                              className="social-link linkedin"
-                              onClick={(e) => handleSocialClick(head.linkedin, e)}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <div className="social-icon-wrapper">
-                                <svg viewBox="0 0 24 24" fill="currentColor">
-                                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                                </svg>
-                              </div>
-                              <span className="social-link-text">LinkedIn</span>
-                            </a>
-                          </div>
-                          
-                          <div className="back-quote">"Innovating with purpose, building with passion"</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  // Mobile View - Simple Card (like team members)
-                  <div className="team-member-card mobile-head-card">
-                    <div className="member-card-inner">
-                      <div className="member-image-wrapper">
-                        <img 
-                          src={head.image} 
-                          alt={head.name} 
-                          className="member-image"
-                          onError={(e) => {
-                            e.currentTarget.src = getFallbackImage(head.name);
-                          }}
-                        />
-                        <div className="member-image-frame"></div>
-                        <div className="head-badge-mobile">TEAM LEAD</div>
-                        <div className="member-social-overlay">
-                          <a 
-                            href={head.linkedin || '#'} 
-                            className="member-social-icon linkedin"
-                            onClick={(e) => handleSocialClick(head.linkedin, e)}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                            </svg>
-                          </a>
-                        </div>
-                      </div>
-                      
-                      <div className="member-details">
-                        <div className="member-name">{head.name}</div>
-                        <div className="member-role">{head.role}</div>
-                        {/* <div className="member-team-tag">{head.team.toUpperCase()}</div> */}
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-          
-          {/* Tech Team Members */}
-          <div className="team-members-section">
-            <h3 className="team-members-title">Team Members</h3>
-            <div className="team-members-grid">
-              {techTeam.filter(member => !member.isHead).map(member => (
-                <div key={member.id} className="team-member-card">
-                  <div className="member-card-inner">
-                    <div className="member-image-wrapper">
-                      <img 
-                        src={member.image} 
-                        alt={member.name} 
-                        className="member-image"
-                        onError={(e) => {
-                          e.currentTarget.src = getFallbackImage(member.name);
-                        }}
-                      />
-                      <div className="member-image-frame"></div>
-                      <div className="member-social-overlay">
-                        <a 
-                          href={member.linkedin || '#'} 
-                          className="member-social-icon linkedin"
-                          onClick={(e) => handleSocialClick(member.linkedin, e)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                          </svg>
-                        </a>
-                        <a 
-                          href={member.instagram || '#'} 
-                          className="member-social-icon instagram"
-                          onClick={(e) => handleSocialClick(member.instagram, e)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                          </svg>
-                        </a>
-                      </div>
-                    </div>
-                    
-                    <div className="member-details">
-                      <div className="member-name">{member.name}</div>
-                      <div className="member-role">{member.role}</div>
-                      {/* <div className="member-team-tag">{member.team.toUpperCase()}</div> */}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-        <section className="team-section tech-section">
-          <div className="section-header">
-            <div className="section-title-wrapper">
-              <span className="section-title-number">02</span>
-              <h2 className="section-title">OPERATIONS TEAM</h2>
-            </div>
-            <p className="section-description">Building the digital experience behind TEDxSRIT</p>
-          </div>
-          
-          {/* Tech Head */}
-          <div className="team-heads-grid">
-            {techTeam.filter(member => member.isHead).map(head => (
-              <div key={head.id} className="team-card-head-wrapper">
-                {/* Desktop View - Flip Card */}
-                {!isMobile ? (
-                  <div className={`team-card-head ${flippedCards.includes(head.id) ? 'flipped' : ''}`}>
-                    <div className="team-card-inner">
-                      {/* Front Side */}
-                      <div className="team-card-front">
-                        <div className="team-head-glow"></div>
-                        <div className="team-head-image-container">
-                          <img 
-                            src={head.image} 
-                            alt={head.name} 
-                            className="team-head-image"
-                            onError={(e) => {
-                              e.currentTarget.src = getFallbackImage(head.name);
-                            }}
-                          />
-                          <div className="team-head-crown">~</div>
-                          <div className="team-head-badge">TEAM LEAD</div>
-                        </div>
-                        
-                        <div className="team-head-details">
-                          <div className="team-head-name">{head.name}</div>
-                          <div className="team-head-role">{head.role}</div>
-                          {/* <div className="team-head-tag">{head.team.toUpperCase()}</div> */}
-                        </div>
-                      </div>
-                      
-                      {/* Back Side - Social Media */}
-                      <div className="team-card-back">
-                        <div className="team-card-back-content">
-                          <div className="back-title">Connect with {head.name.split(' ')[0]}</div>
-                          <div className="back-role">{head.role}</div>
-                          
-                          <div className="social-links">
-                            <a 
-                              href={head.linkedin || '#'} 
-                              className="social-link linkedin"
-                              onClick={(e) => handleSocialClick(head.linkedin, e)}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <div className="social-icon-wrapper">
-                                <svg viewBox="0 0 24 24" fill="currentColor">
-                                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                                </svg>
-                              </div>
-                              <span className="social-link-text">LinkedIn</span>
-                            </a>
-                          </div>
-                          
-                          <div className="back-quote">"Innovating with purpose, building with passion"</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  // Mobile View - Simple Card (like team members)
-                  <div className="team-member-card mobile-head-card">
-                    <div className="member-card-inner">
-                      <div className="member-image-wrapper">
-                        <img 
-                          src={head.image} 
-                          alt={head.name} 
-                          className="member-image"
-                          onError={(e) => {
-                            e.currentTarget.src = getFallbackImage(head.name);
-                          }}
-                        />
-                        <div className="member-image-frame"></div>
-                        <div className="head-badge-mobile">TEAM LEAD</div>
-                        <div className="member-social-overlay">
-                          <a 
-                            href={head.linkedin || '#'} 
-                            className="member-social-icon linkedin"
-                            onClick={(e) => handleSocialClick(head.linkedin, e)}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                            </svg>
-                          </a>
-                        </div>
-                      </div>
-                      
-                      <div className="member-details">
-                        <div className="member-name">{head.name}</div>
-                        <div className="member-role">{head.role}</div>
-                        {/* <div className="member-team-tag">{head.team.toUpperCase()}</div> */}
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-          
-          {/* Tech Team Members */}
-          <div className="team-members-section">
-            <h3 className="team-members-title">Team Members</h3>
-            <div className="team-members-grid">
-              {techTeam.filter(member => !member.isHead).map(member => (
-                <div key={member.id} className="team-member-card">
-                  <div className="member-card-inner">
-                    <div className="member-image-wrapper">
-                      <img 
-                        src={member.image} 
-                        alt={member.name} 
-                        className="member-image"
-                        onError={(e) => {
-                          e.currentTarget.src = getFallbackImage(member.name);
-                        }}
-                      />
-                      <div className="member-image-frame"></div>
-                      <div className="member-social-overlay">
-                        <a 
-                          href={member.linkedin || '#'} 
-                          className="member-social-icon linkedin"
-                          onClick={(e) => handleSocialClick(member.linkedin, e)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                          </svg>
-                        </a>
-                        <a 
-                          href={member.instagram || '#'} 
-                          className="member-social-icon instagram"
-                          onClick={(e) => handleSocialClick(member.instagram, e)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                          </svg>
-                        </a>
-                      </div>
-                    </div>
-                    
-                    <div className="member-details">
-                      <div className="member-name">{member.name}</div>
-                      <div className="member-role">{member.role}</div>
-                      {/* <div className="member-team-tag">{member.team.toUpperCase()}</div> */}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-        <section className="team-section tech-section">
-          <div className="section-header">
-            <div className="section-title-wrapper">
-              <span className="section-title-number">02</span>
-              <h2 className="section-title">CONTENT TEAM</h2>
-            </div>
-            <p className="section-description">Building the digital experience behind TEDxSRIT</p>
-          </div>
-          
-          {/* Tech Head */}
-          <div className="team-heads-grid">
-            {techTeam.filter(member => member.isHead).map(head => (
-              <div key={head.id} className="team-card-head-wrapper">
-                {/* Desktop View - Flip Card */}
-                {!isMobile ? (
-                  <div className={`team-card-head ${flippedCards.includes(head.id) ? 'flipped' : ''}`}>
-                    <div className="team-card-inner">
-                      {/* Front Side */}
-                      <div className="team-card-front">
-                        <div className="team-head-glow"></div>
-                        <div className="team-head-image-container">
-                          <img 
-                            src={head.image} 
-                            alt={head.name} 
-                            className="team-head-image"
-                            onError={(e) => {
-                              e.currentTarget.src = getFallbackImage(head.name);
-                            }}
-                          />
-                          <div className="team-head-crown">~</div>
-                          <div className="team-head-badge">TEAM LEAD</div>
-                        </div>
-                        
-                        <div className="team-head-details">
-                          <div className="team-head-name">{head.name}</div>
-                          <div className="team-head-role">{head.role}</div>
-                          {/* <div className="team-head-tag">{head.team.toUpperCase()}</div> */}
-                        </div>
-                      </div>
-                      
-                      {/* Back Side - Social Media */}
-                      <div className="team-card-back">
-                        <div className="team-card-back-content">
-                          <div className="back-title">Connect with {head.name.split(' ')[0]}</div>
-                          <div className="back-role">{head.role}</div>
-                          
-                          <div className="social-links">
-                            <a 
-                              href={head.linkedin || '#'} 
-                              className="social-link linkedin"
-                              onClick={(e) => handleSocialClick(head.linkedin, e)}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <div className="social-icon-wrapper">
-                                <svg viewBox="0 0 24 24" fill="currentColor">
-                                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                                </svg>
-                              </div>
-                              <span className="social-link-text">LinkedIn</span>
-                            </a>
-                          </div>
-                          
-                          <div className="back-quote">"Innovating with purpose, building with passion"</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  // Mobile View - Simple Card (like team members)
-                  <div className="team-member-card mobile-head-card">
-                    <div className="member-card-inner">
-                      <div className="member-image-wrapper">
-                        <img 
-                          src={head.image} 
-                          alt={head.name} 
-                          className="member-image"
-                          onError={(e) => {
-                            e.currentTarget.src = getFallbackImage(head.name);
-                          }}
-                        />
-                        <div className="member-image-frame"></div>
-                        <div className="head-badge-mobile">TEAM LEAD</div>
-                        <div className="member-social-overlay">
-                          <a 
-                            href={head.linkedin || '#'} 
-                            className="member-social-icon linkedin"
-                            onClick={(e) => handleSocialClick(head.linkedin, e)}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                            </svg>
-                          </a>
-                        </div>
-                      </div>
-                      
-                      <div className="member-details">
-                        <div className="member-name">{head.name}</div>
-                        <div className="member-role">{head.role}</div>
-                        {/* <div className="member-team-tag">{head.team.toUpperCase()}</div> */}
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-          
-          {/* Tech Team Members */}
-          <div className="team-members-section">
-            <h3 className="team-members-title">Team Members</h3>
-            <div className="team-members-grid">
-              {techTeam.filter(member => !member.isHead).map(member => (
-                <div key={member.id} className="team-member-card">
-                  <div className="member-card-inner">
-                    <div className="member-image-wrapper">
-                      <img 
-                        src={member.image} 
-                        alt={member.name} 
-                        className="member-image"
-                        onError={(e) => {
-                          e.currentTarget.src = getFallbackImage(member.name);
-                        }}
-                      />
-                      <div className="member-image-frame"></div>
-                      <div className="member-social-overlay">
-                        <a 
-                          href={member.linkedin || '#'} 
-                          className="member-social-icon linkedin"
-                          onClick={(e) => handleSocialClick(member.linkedin, e)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                          </svg>
-                        </a>
-                        <a 
-                          href={member.instagram || '#'} 
-                          className="member-social-icon instagram"
-                          onClick={(e) => handleSocialClick(member.instagram, e)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                          </svg>
-                        </a>
-                      </div>
-                    </div>
-                    
-                    <div className="member-details">
-                      <div className="member-name">{member.name}</div>
-                      <div className="member-role">{member.role}</div>
-                      {/* <div className="member-team-tag">{member.team.toUpperCase()}</div> */}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-        </div>
+        {/* Sponsors Team */}
+        {renderTeamSection("SPONSORS TEAM", "Building partnerships and managing sponsor relations", sponsorsTeam, "03")}
+
+        {/* Speakers Team */}
+        {renderTeamSection("SPEAKERS TEAM", "Coordinating with speakers and shaping the event lineup", speakersTeam, "04")}
+
+        {/* Curation Team */}
+        {renderTeamSection("CURATION TEAM", "Designing themes and curating meaningful ideas worth spreading", curationTeam, "05")}
+
+        {/* Logistics Team */}
+        {renderTeamSection("LOGISTICS TEAM", "Managing operations, coordination, and on-ground execution", logisticsTeam, "06")}
+
+        {/* Hospitality Team */}
+        {renderTeamSection("HOSPITALITY TEAM", "Ensuring guest comfort and seamless event experience", hospitalityTeam, "07")}
+
       </main>
-      
+
       {/* Footer Section */}
       <div className="footer-wrapper">
         <Footer />

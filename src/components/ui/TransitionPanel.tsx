@@ -33,9 +33,8 @@ const TransitionPanel = ({
       className="w-full"
     >
       <div
-        className={`flex flex-col ${
-          isImageLeft ? "lg:flex-row" : "lg:flex-row-reverse"
-        } gap-8 lg:gap-16 items-center`}
+        className={`flex flex-col ${isImageLeft ? "lg:flex-row" : "lg:flex-row-reverse"
+          } gap-8 lg:gap-16 items-center`}
       >
         {/* Image/Video Panel */}
         <motion.div
@@ -101,10 +100,10 @@ const TransitionPanel = ({
           </motion.p>
           {children && (
             <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: delay + 0.6 }}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: delay + 0.6 }}
             >
               {children}
             </motion.div>
@@ -153,7 +152,7 @@ const YouTubeVideoEmbed = ({ videoId, title }: { videoId: string; title: string 
   return (
     <div ref={containerRef} className="relative w-full h-[300px] lg:h-[400px] bg-black">
       {!isLoaded ? (
-        <div 
+        <div
           className="relative w-full h-full cursor-pointer group/thumb"
           onClick={handleThumbnailClick}
         >
@@ -192,11 +191,12 @@ const YouTubeVideoEmbed = ({ videoId, title }: { videoId: string; title: string 
           style={{ border: 'none' }}
         />
       )}
-      {shouldLoad && !isLoaded && (
-        <div className="absolute inset-0 flex items-center justify-center">
+      {/* Spinner removed because it was blocking clicks and showing permanently */
+      /* shouldLoad && !isLoaded && (
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
         </div>
-      )}
+      ) */}
     </div>
   );
 };
