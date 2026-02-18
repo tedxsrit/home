@@ -83,7 +83,7 @@ const speakers = [
    {
     id: 9,
     name: 'Group Captian Ranjit Isaac (Retd.)',
-    role: 'Neuroscientist & Author',
+    role: '',
     image: speaker9,
     quote: 'In the age of AI, human skills matter most.',
     // bio: 'Dr. Ananya Rao is an award-winning neuroscientist whose research bridges the gap between brain science and everyday life.',
