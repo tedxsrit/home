@@ -27,7 +27,7 @@ import designerYuvashree from '@/assets/teams/designer_Yuvashree.png';
 // Sponsors
 import sponsorsKavin from '@/assets/teams/sponsors_Kavin.jpg';
 import sponsorsSathya from '@/assets/teams/sponsors_Sathya.jpg';
-import sponsorsChitesh from '@/assets/teams/sponsors_Chitesh.png';
+import sponsorsChitesh from '@/assets/teams/sponsers_Chitesh.jpeg';
 
 // Speakers
 import speakersSharun from '@/assets/teams/speakers_Sharun.jpg';
