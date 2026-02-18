@@ -131,7 +131,7 @@ const TEDxSRITTeam: React.FC = () => {
     },
     {
       id: 5,
-      name: 'Ashish M Manon',
+      name: 'Ashish M Menon',
       role: 'UI Enhanser',
       team: 'Tech Team',
       image: Ashish,
