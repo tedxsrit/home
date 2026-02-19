@@ -22,13 +22,16 @@ import CountdownTimer from '@/components/CountdownTimer';
 import SimpleCountdown from '@/components/own_count/SimpleCountdown';
 
 const speakers = [
-  { id: 1, name: 'Dr. Priya Jaganathan', /*role: 'Block Chain'*/ image: speaker1 },
-  { id: 2, name: 'Lt. Vamshi E (Retd.)', /*role: 'Tech Entrepreneur'*/ image: speaker2 },
-  { id: 3, name: 'Pratham Golcha', /*role: 'Innovation Expert'*/ image: speaker3 },
-  { id: 4, name: 'Dr. Siddhant R', /*role: 'Neuroscientist'*/ image: speaker4 },
-   { id: 5, name: 'Dr. Lija Mohan', /*role: 'Block Chain'*/ image: speaker5 },
-  { id: 6, name: 'Dr. Santosh Karthikeyan V', /*role: 'Tech Entrepreneur'*/ image: speaker6 },
-  { id: 7, name: 'Dr. Prashanth S I.A.S', /*role: 'Innovation Expert'*/ image: speaker7 },
+ 
+
+  { id: 1, name: 'Lt. Vamshi E (Retd.)', /*role: 'Tech Entrepreneur'*/ image: speaker2 },
+   { id: 2, name: 'Dr. Prashanth S  I.A.S', /*role: 'Innovation Expert'*/ image: speaker7 },
+    { id: 3, name: 'Dr. Priya Jaganathan', /*role: 'Block Chain'*/ image: speaker1 },
+  { id: 4, name: 'Pratham Golcha', /*role: 'Innovation Expert'*/ image: speaker3 },
+  { id: 5, name: 'Dr. Siddhant R', /*role: 'Neuroscientist'*/ image: speaker4 },
+   { id: 6, name: 'Dr. Lija Mohan', /*role: 'Block Chain'*/ image: speaker5 },
+  { id: 7, name: 'Dr. Santosh Karthikeyan V', /*role: 'Tech Entrepreneur'*/ image: speaker6 },
+  
   { id: 8, name: 'Dr. J J Adri Jovin', /*role: 'Neuroscientist'*/ image: speaker8 },
     { id: 9, name: 'Group Captian Ranjit Isaac (Retd.)', /*role: 'Neuroscientist'*/ image: speaker9 },
 

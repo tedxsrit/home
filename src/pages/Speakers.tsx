@@ -15,8 +15,25 @@ import { Button } from '@/components/ui/button';
 import { color } from 'framer-motion';
 
 const speakers = [
-  {
+
+    {
     id: 1,
+    name: 'Lt. Vamshi E (Retd.)',
+    role: '',
+    image: speaker2,
+    quote: 'Innovation without empathy is just invention. True innovation understands the human experience and creates solutions that resonate with people\'s lives and aspirations.',
+    // bio: 'Priya Sharma is the founder of multiple successful tech startups focused on social impact.',
+  },
+    {
+    id: 2,
+    name: 'Dr. S  Prashanth  I.A.S',
+    role: '',
+    image: speaker7,
+    quote: 'True success is not about medals or ranks, but using excellence and resilience to serve a greater purpose.',
+    // bio: 'Dr. Ananya Rao is an award-winning neuroscientist whose research bridges the gap between brain science and everyday life.',
+  },
+  {
+    id: 3,
     name: ' Dr. Priya Jaganathan',
     role: '  ',
     image: speaker1,
@@ -24,16 +41,9 @@ const speakers = [
     // bio: 'Dr. Rajesh Kumar is a leading AI researcher with over 15 years of experience in developing human-centric AI systems.',
   
    },
+ 
   {
-    id: 2,
-    name: 'Lt. Vamshi E (Retd.)',
-    role: '',
-    image: speaker2,
-    quote: 'Innovation without empathy is just invention. True innovation understands the human experience and creates solutions that resonate with people\'s lives and aspirations.',
-    // bio: 'Priya Sharma is the founder of multiple successful tech startups focused on social impact.',
-  },
-  {
-    id: 3,
+    id: 4,
     name: 'Pratham Golcha',
     role: '',
     image: speaker3,
@@ -41,7 +51,7 @@ const speakers = [
     // bio: 'Prof. Suresh Menon has dedicated his career to transforming education through innovative teaching methodologies.',
   },
   {
-    id: 4,
+    id: 5,
     name: 'Dr. Siddhant R',
     role: '',
     image: speaker4,
@@ -49,7 +59,7 @@ const speakers = [
     // bio: 'Dr. Ananya Rao is an award-winning neuroscientist whose research bridges the gap between brain science and everyday life.',
   },
    {
-    id: 5,
+    id: 6,
     name: 'Dr. Lija Mohan',
     role: '',
     image: speaker5,
@@ -57,21 +67,14 @@ const speakers = [
     // bio: 'Dr. Ananya Rao is an award-winning neuroscientist whose research bridges the gap between brain science and everyday life.',
   },
    {
-    id: 6,
+    id: 7,
     name: 'Dr. Santosh Karthikeyan V',
     role: '',
     image: speaker6,
     quote: 'Humans and superintelligent AI can work together to build a better future.',
     // bio: 'Dr. Ananya Rao is an award-winning neuroscientist whose research bridges the gap between brain science and everyday life.',
   },
-   {
-    id: 7,
-    name: 'Dr. Prashanth S I.A.S',
-    role: '',
-    image: speaker7,
-    quote: 'True success is not about medals or ranks, but using excellence and resilience to serve a greater purpose.',
-    // bio: 'Dr. Ananya Rao is an award-winning neuroscientist whose research bridges the gap between brain science and everyday life.',
-  },
+ 
    {
     id: 8,
     name: 'Dr. J J Adri Jovin',
@@ -136,12 +139,12 @@ const Speakers = () => {
                 <h2 className="text-2xl md:text-3xl font-bold text-foreground text-red-500">
                   {currentSpeaker.name}
                 </h2>
-                <p className="text-primary text-lg font-medium">
+                {/* <p className="text-primary text-lg font-medium">
                   {currentSpeaker.role}
                 </p> 
                  <p className="text-muted-foreground text-sm max-w-md mx-auto lg:mx-0">
                   {currentSpeaker.bio}
-                </p>
+                </p> */}
                 
                  {/* <a
                    href="https://docs.google.com/forms/d/e/1FAIpQLSdPEwXesUAyAoxYeSaxZooOykX298rWfcOP-jQboq5MfojI-w/viewform"
