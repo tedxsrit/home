@@ -66,7 +66,7 @@ const Index = () => {
   
 const targetDate = useMemo(() => {
   // Create a date for February 23, 2026 at 8:00 AM
-  const date = new Date(2026, 1, 23, 8, 0, 0, 0); // Note: Month is 0-indexed, so 1 = February
+  const date = new Date(2026, 1, 24, 8, 0, 0, 0); // Note: Month is 0-indexed, so 1 = February
   
   // Alternatively, you can set it like this:
   // const date = new Date("2026-02-23T08:00:00");

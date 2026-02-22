@@ -36,7 +36,7 @@ export default function CountdownTimer() {
       className="countdown-timer"
       data-timezone="Asia/Kolkata"
       data-textcolor="#ffffff"
-      data-date="2026-02-23 08:00"
+      data-date="2026-02-24 08:00"
       data-background="#010001"
       data-digitscolor="#d70b34"
       data-unitscolor="#ffffff"
