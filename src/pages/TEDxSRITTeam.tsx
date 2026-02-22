@@ -331,7 +331,7 @@ const TEDxSRITTeam: React.FC = () => {
     },
     {
       id: 62, 
-      name: "New Member Name",
+      name: "PRAJEESH S T",
       role: "Member",
       team: "Curation Team",
       image: curationprajeesh,
