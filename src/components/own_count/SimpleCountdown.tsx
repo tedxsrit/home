@@ -106,7 +106,7 @@ const SimpleCountdown: React.FC<CountdownProps> = ({
       
       {isComplete && (
         <div className="countdown-complete">
-          Countdown Complete!
+         Successfully completed the Event!
         </div>
       )}
     </div>

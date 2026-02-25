@@ -120,11 +120,12 @@ const targetDate = useMemo(() => {
             className="text-2xl md:text-4xl font-light text-muted-foreground mb-8 animate-slide-up"
             style={{ animationDelay: '0.3s' }}
           >
-            <SimpleCountdown 
+            {/* <SimpleCountdown 
               targetDate={targetDate}
               showLabels={true}
               compact={false} // or true for compact version
-            />
+            /> */}
+            <p>Event Completed Successfully!!</p>
           </div>
 
           {/* <div className="space-y-6 text-muted-foreground text-lg leading-relaxed animate-slide-up mb-8">
