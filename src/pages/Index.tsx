@@ -143,7 +143,7 @@ const targetDate = useMemo(() => {
             className="text-lg md:text-xl text-primary font-medium tracking-widest animate-slide-up"
             style={{ animationDelay: '0.5s' }}
           >
-            <Button className='m-5'>
+            {/* <Button className='m-5'>
               <a
                 href="https://forms.gle/Sde3tefYcGhv8p5i7"
                 target="_blank"
@@ -152,7 +152,7 @@ const targetDate = useMemo(() => {
               >
                 Get your tickets
               </a>
-            </Button>
+            </Button> */}
           </div>
         </div>
 
